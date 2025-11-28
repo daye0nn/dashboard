@@ -10,6 +10,10 @@ const Container = styled.div`
     width: 100%;
     .header {
       background: var(--sub);
+      .header-cell {
+        font-size: 1.8rem;
+        padding: 10px 0;
+      }
     }
     tbody tr:nth-child(odd) {
       background: var(--light);
@@ -40,7 +44,7 @@ const PaymentTable = <T extends object>({ data, columns }: Props<T>) => {
           {table.getHeaderGroups().map((group) => (
             <tr key={group.id} className="header">
               {group.headers.map((header) => (
-                <th key={header.id}>
+                <th key={header.id} className="header-cell">
                   {flexRender(
                     header.column.columnDef.header,
                     header.getContext()

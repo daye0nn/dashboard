@@ -1,4 +1,15 @@
 # 결제 대시보드 페이지
 
-.env 파일 생성
-VITE_API_BASE_URL=https://recruit.paysbypays.com/api/v1
+## UX/UI
+
+첫 대시보드에는 총 결제금액·거래건수·결제 성공률·실패/취소 건수를 핵심 지표로 배치해 관리자가 한눈에 서비스 현황을 파악할 수 있도록 했습니다.
+거래내역은 별도의 리스트 페이지로 구성해 상세 검토가 가능하도록 정보 구조를 분리했습니다.
+전체 UI는 불필요한 요소를 최소화하고 토스페이먼츠 컬러를 활용해 신뢰감 있는 깔끔한 디자인을 구현했습니다.
+<br/>
+
+## 개발환경
+
+- **Framework** : React + Vite + Typescript
+- **API** : .env 파일 생성
+  <br/>
+  VITE_API_BASE_URL=https://recruit.paysbypays.com/api/v1

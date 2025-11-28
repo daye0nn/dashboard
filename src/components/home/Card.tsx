@@ -17,20 +17,23 @@ const Section = styled.div`
   border-radius: 10px;
   background: var(--light);
   border: 1px solid var(--border);
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   gap: 20px;
+  padding: 40px;
 `;
 
 const Tag = styled.p`
   color: var(--grey);
+  margin-bottom: 20px;
 `;
 
 const Value = styled.p`
   font-size: 2rem;
   font-weight: 500;
+  margin-bottom: 20px;
 `;
 
 const Card = () => {
@@ -39,9 +42,18 @@ const Card = () => {
   if (isLoading) return <div>로딩중...</div>;
   if (error) return <div>에러 발생!</div>;
 
-  // Amount 합산
-  const totalAmount =
-    payments?.reduce((acc, cur) => acc + Number(cur.amount), 0) ?? 0;
+  // 총 결제 금액
+  const krwAmount =
+    payments?.reduce(
+      (acc, cur) => acc + (cur.currency === "KRW" ? Number(cur.amount) : 0),
+      0
+    ) ?? 0;
+
+  const usdAmount =
+    payments?.reduce(
+      (acc, cur) => acc + (cur.currency === "USD" ? Number(cur.amount) : 0),
+      0
+    ) ?? 0;
 
   // 결제 건수
   const totalCount = payments?.length ?? 0;
@@ -59,19 +71,20 @@ const Card = () => {
       <Wrapper>
         <Section>
           <Tag>총 결제금액</Tag>
-          <Value>{totalAmount.toLocaleString()}원</Value>
+          <Value>{krwAmount.toLocaleString()} 원</Value>
+          <Value>{usdAmount.toLocaleString()} USD</Value>
         </Section>
         <Section>
           <Tag>총 거래건수</Tag>
-          <Value>{totalCount}건</Value>
+          <Value>{totalCount} 건</Value>
         </Section>
         <Section>
           <Tag>결제 성공률</Tag>
-          <Value>{successRate}%</Value>
+          <Value>{successRate} %</Value>
         </Section>
         <Section>
           <Tag>실패/취소 건수</Tag>
-          <Value>{failedCount}건</Value>
+          <Value>{failedCount} 건</Value>
         </Section>
       </Wrapper>
     </Container>

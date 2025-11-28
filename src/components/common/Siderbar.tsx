@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
   width: 16%;
@@ -28,8 +31,14 @@ const Siderbar = () => {
   return (
     <Container>
       <Wrapper>
-        <Menu to="/">홈</Menu>
-        <Menu to="/list">거래 내역</Menu>
+        <Menu to="/">
+          <FontAwesomeIcon icon={faHouse} />
+          &nbsp;홈
+        </Menu>
+        <Menu to="/list">
+          <FontAwesomeIcon icon={faList} />
+          &nbsp;거래 내역
+        </Menu>
       </Wrapper>
     </Container>
   );

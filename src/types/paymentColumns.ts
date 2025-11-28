@@ -19,7 +19,11 @@ export const paymentColumns = [
   }),
   columnHelper.accessor("amount", {
     header: "결제액",
-    cell: (info) => `${Number(info.getValue()).toLocaleString()} `,
+    cell: (info) => {
+      const amount = Number(info.getValue() ?? 0);
+      const currency = info.row.original.currency ?? "";
+      return `${amount.toLocaleString()} ${currency}`;
+    },
   }),
   columnHelper.accessor("payType", {
     header: "결제수단",
